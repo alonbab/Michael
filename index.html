@@ -16,7 +16,7 @@
   <ul></ul>
 </div>
 <script>
-		var folder = "images/";
+		//var folder = "images/";
 		debugger
 		// $.ajax({
 		//     url : folder,
@@ -29,13 +29,19 @@
 		//     }
 		// });
 
-    $.get(folder, function(data, status){
-      $(data).find("a").attr("href", function (i, val) {
-        if( val.match(/\.(jpg|png|gif|mp3)$/) ) { 
-          $("ul").append( "<li><a href='"+val +"'>'"+val+"'</a></li>" );
-        } 
-      });
-    });
+   var dir = "images/";
+var fileextension = ".jpg";
+$.ajax({
+    //This will retrieve the contents of the folder if the folder is configured as 'browsable'
+    url: dir,
+    success: function (data) {
+        //List all .png file names in the page
+        $(data).find("a:contains(" + fileextension + ")").each(function () {
+            var filename = this.href.replace(window.location.host, "").replace("https:///", "");
+            $("body").append("<img src='" + filename + "'>");
+        });
+    }
+});
 	</script>
 </body>
 </html>
