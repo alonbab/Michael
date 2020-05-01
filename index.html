@@ -31,7 +31,7 @@
 
     $.get(folder, function(data, status){
       $(data).find("a").attr("href", function (i, val) {
-        if( val.match(/\.(jpe?g|png|gif|mp3)$/) ) { 
+        if( val.match(/\.(jpg|png|gif|mp3)$/) ) { 
           $("ul").append( "<li><a href='"+val +"'>'"+val+"'</a></li>" );
         } 
       });
